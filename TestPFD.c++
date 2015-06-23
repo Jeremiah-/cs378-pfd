@@ -64,28 +64,18 @@ TEST(PFDFixture, initialize) {
 // ----
 
 TEST(PFDFixture, eval_1) {
-    const int v = collatz_eval(1, 10);
-    ASSERT_EQ(20, v);}
+    vector<vector<int>> suc(6);
+    vector<int> one = {3, 5};
+    vector<int> three = {2, 4};
+    vector<int> five = {3, 2};
 
-TEST(PFDFixture, eval_2) {
-    const int v = collatz_eval(100, 200);
-    ASSERT_EQ(125, v);}
+    suc[1] = one;
+    suc[3] = three;
+    suc[5] = five;
 
-TEST(PFDFixture, eval_3) {
-    const int v = collatz_eval(201, 210);
-    ASSERT_EQ(89, v);}
-
-TEST(PFDFixture, eval_4) {
-    const int v = collatz_eval(900, 1000);
-    ASSERT_EQ(174, v);}
-
-TEST(PFDFixture, eval_5) {
-    const int v = collatz_eval(1000, 900);
-    ASSERT_EQ(174, v);}
-
-TEST(PFDFixture, eval_6) {
-    const int v = collatz_eval(10, 10);
-    ASSERT_EQ(7, v);}
+    vector<int> pre = {0, 0, 2, 2, 1, 1};
+    queue<int> results = pfd_eval(pre, suc);
+    ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
 
 
 // -----
@@ -93,25 +83,21 @@ TEST(PFDFixture, eval_6) {
 // -----
 
 TEST(PFDFixture, print) {
-    ostringstream w;
-    collatz_print(w, 1, 10, 20);
-    ASSERT_EQ("1 10 20\n", w.str());}
+    ostream w;
+    queue<int> results = {1, 2, 3, 4, 5};
+    pfd_print_result(w, results);
+    ASSERT_EQ("1 2 3 4 5", w.str());}
 
 // -----
 // solve
 // -----
 
 TEST(PFDFixture, solve) {
-    istringstream r("1 10\n100 200\n201 210\n900 1000\n");
+    istringstream r("5 4\n3 2 1 5\n2 2 5 3\n4 1 3\n5 1 1");
     ostringstream w;
-    collatz_solve(r, w);
-    ASSERT_EQ("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n", w.str());}
+    pfd_solve(r, w);
+    ASSERT_EQ("1 5 3 2 4", w.str());}
 
-TEST(PFDFixture, solve2) {
-    istringstream r("1 10\n100 200\n201 210\n1000 900\n");
-    ostringstream w;
-    collatz_solve(r, w);
-    ASSERT_EQ("1 10 20\n100 200 125\n201 210 89\n1000 900 174\n", w.str());}
 
 /*
 % ls -al /usr/include/gtest/

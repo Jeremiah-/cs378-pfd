@@ -64,7 +64,6 @@ void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int
 // ------------
 
 queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors) {
-    
     queue<int> no_predecessors;
     
 
