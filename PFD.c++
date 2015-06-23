@@ -45,7 +45,7 @@ void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int
     string s;
     while (getline(r, s)) {
 
-        vector<string> nums = split(s, ' ');
+        vector<string> nums = pfd_split(s, ' ');
         int task = stoi(nums[0]);
         int num_dependencies = stoi(nums[1]);
         // priority_queue<int> p;
@@ -95,8 +95,8 @@ void pfd_solve (istream& r, ostream& w) {
     // make the list of predeccessors for now
     string s;
     getline(r, s);
-    vector<string> nums = split(s, ' ');
-    tasks = stoi(nums[0]);
+    vector<string> nums = pfd_split(s, ' ');
+    int tasks = stoi(nums[0]);
 
     // vector<priority_queue<int>> predecessors(tasks + 1); 
     vector<int> predecessors(tasks + 1, 0);

@@ -31,13 +31,22 @@ using namespace std;
 TEST(PFDFixture, split) {
     string s("Split me up.");
     vector<string> result = pfd_split(s, ' ');
-    ASSERT_THAT(result, ElementsAre("Split", "me", "up."));
+    // ASSERT_THAT(result, ElementsAre("Split", "me", "up."));
+    ASSERT_EQ(result.size(), 3);
+    ASSERT_EQ(result[0], "Split");
+    ASSERT_EQ(result[1], "me");
+    ASSERT_EQ(result[2], "up.");
 }
 
-TEST(PFDFixture, split) {
+TEST(PFDFixture, split1) {
     string s("1 2 3 4\n");
     vector<string> result = pfd_split(s, ' ');
-    ASSERT_THAT(result, ElementsAre("1", "2", "3", "4"));
+    // ASSERT_THAT(result, ElementsAre("1", "2", "3", "4"));
+    ASSERT_EQ(result.size(), 4);
+    ASSERT_EQ(result[0], "1");
+    ASSERT_EQ(result[1], "2");
+    ASSERT_EQ(result[2], "3");
+    ASSERT_EQ(result[3], "4");
 }
 
 
@@ -50,12 +59,17 @@ TEST(PFDFixture, initialize) {
     vector<priority_queue<int>> pre(4);
     vector<priority_queue<int>> suc(4);
 
-    ASSERT_THAT( pre[1], ElementsAre(1, 2));
-    ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
-    ASSERT_EQ( pre[3].size(), 0;
-    ASSERT_THAT(suc[1], ElementsAre(1, 2));
-    ASSERT_THAT(suc[2], ElementsAre(1, 2));
-    ASSERT_THAT(suc[3], ElementsAre(2));
+    // ASSERT_THAT( pre[1], ElementsAre(1, 2));
+    // ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
+    ASSERT_EQ(pre[1].size(), 2);
+    ASSERT_EQ(pre[2].size(), 3);
+    ASSERT_EQ( pre[3].size(), 0);
+    ASSERT_EQ( suc[1].size(), 2);
+    ASSERT_EQ( suc[2].size(), 2);
+    ASSERT_EQ( suc[3].size(), 1);
+    // ASSERT_THAT(suc[1], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[2], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[3], ElementsAre(2));
 }
 
 
@@ -75,7 +89,20 @@ TEST(PFDFixture, eval_1) {
 
     vector<int> pre = {0, 0, 2, 2, 1, 1};
     queue<int> results = pfd_eval(pre, suc);
-    ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
+
+    // ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
+    ASSERT_EQ(results.size(), 5);
+    ASSERT_EQ(results.front(), "1");
+    results.pop();
+    ASSERT_EQ(results.front(), "5");
+    results.pop();
+    ASSERT_EQ(results.front(), "3");
+    results.pop();
+    ASSERT_EQ(results.front(), "2");
+    results.pop();
+    ASSERT_EQ(results.front(), "4");
+    results.pop();
+}
 
 
 // -----
@@ -83,8 +110,13 @@ TEST(PFDFixture, eval_1) {
 // -----
 
 TEST(PFDFixture, print) {
-    ostream w;
-    queue<int> results = {1, 2, 3, 4, 5};
+    ostringstream w;
+    queue<int> results;
+    results.push(1);
+    results.push(2);
+    results.push(3);
+    results.push(4);
+    results.push(5);
     pfd_print_result(w, results);
     ASSERT_EQ("1 2 3 4 5", w.str());}
 
