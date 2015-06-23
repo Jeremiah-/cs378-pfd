@@ -22,15 +22,30 @@
 
 using namespace std;
 
-// ------------
-// pfd_read
-// ------------
 
+// This method is taken from http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+// since I couldn't find a simple library function to split a string
+vector<string> split(string str, char delimiter) {
+  vector<string> internal;
+  stringstream ss(str); // Turn the string into a stream.
+  string tok;
+  
+  while(getline(ss, tok, delimiter)) {
+    internal.push_back(tok);
+  }
+  
+  return internal;
+}
+
+// ------------
+// pfd_initialize_adjacency_list
+// ------------
 
 void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors, istream& r) {
     string s;
     while (getline(r, s)) {
-        vector<string> nums = split(getline(r, s), ' ');
+
+        vector<string> nums = split(s, ' ');
         int task = stoi(nums[0]);
         int num_dependencies = stoi(nums[1]);
         // priority_queue<int> p;
@@ -79,7 +94,8 @@ void pfd_solve (istream& r, ostream& w) {
     // make an adjacency list of successors
     // make the list of predeccessors for now
     string s;
-    vector<string> nums = split(getline(r, s), ' ');
+    getline(r, s);
+    vector<string> nums = split(s, ' ');
     tasks = stoi(nums[0]);
 
     vector<priority_queue<int>> predecessors(tasks); 

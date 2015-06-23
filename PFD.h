@@ -18,6 +18,8 @@
 int tasks;
 using namespace std;
 
+vector<string> split(string str, char delimiter);
+
 // ------------
 // collatz_read
 // ------------
