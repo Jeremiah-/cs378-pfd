@@ -27,7 +27,7 @@ using namespace std;
  * @param s a string
  * @return a pair of ints, representing the beginning and end of a range, [i, j]
  */
-void pfd_initialize_adjacency_list (priority_queue<int> predecessors[tasks], priority_queue<int> successors[tasks], istream& r);
+void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors, istream& r);
 
 // ------------
 // collatz_eval
@@ -38,7 +38,7 @@ void pfd_initialize_adjacency_list (priority_queue<int> predecessors[tasks], pri
  * @param j the end       of the range, inclusive
  * @return the max cycle length of the range [i, j]
  */
-queue<int> pfd_eval (priority_queue<int> predecessors)[tasks], priority_queue<int> successors[tasks]);
+queue<int> pfd_eval (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors);
 
 // -------------
 // collatz_print

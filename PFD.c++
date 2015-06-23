@@ -20,8 +20,6 @@
 
 #include "PFD.h"
 
-int tasks;
-
 using namespace std;
 
 // ------------
@@ -29,7 +27,7 @@ using namespace std;
 // ------------
 
 
-void pfd_initialize_adjacency_list (priority_queue<int> predecessors[tasks], priority_queue<int> successors[tasks], istream& r) {
+void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors, istream& r) {
     string s;
     while (getline(r, s)) {
         vector<string> nums = split(getline(r, s), ' ');
@@ -50,7 +48,7 @@ void pfd_initialize_adjacency_list (priority_queue<int> predecessors[tasks], pri
 // pfd_eval
 // ------------
 
-queue<int> pfd_eval (priority_queue<int> predecessors[tasks], priority_queue<int> successors[tasks]) {
+queue<int> pfd_eval (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors) {
     
     queue<int> no_predecessors;
     
@@ -65,8 +63,10 @@ queue<int> pfd_eval (priority_queue<int> predecessors[tasks], priority_queue<int
 // TODO: may be a problem with printing an extra space at the end
 
 void pfd_print_result (ostream& w, queue<int>& results) {
-    for (int r : results) {
-        w << r << " ";
+    int size = results.size();
+    for (int i = 0; i < size; ++i) {
+        w << results.front() << " ";
+        results.pop();
     }
     w << endl;
 }
@@ -82,8 +82,8 @@ void pfd_solve (istream& r, ostream& w) {
     vector<string> nums = split(getline(r, s), ' ');
     tasks = stoi(nums[0]);
 
-    priority_queue<int> predecessors[tasks]; 
-    priority_queue<int> successors[tasks];
+    vector<priority_queue<int>> predecessors(tasks); 
+    vector<priority_queue<int>> successors(tasks);
     pfd_initialize_adjacency_list(predecessors, successors, r);
     queue<int> results = pfd_eval(predecessors, successors);
     pfd_print_result(w, results);
