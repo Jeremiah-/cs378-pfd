@@ -25,7 +25,7 @@ using namespace std;
 
 // This method is taken from http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
 // since I couldn't find a simple library function to split a string
-vector<string> split(string str, char delimiter) {
+vector<string> pfd_split(string str, char delimiter) {
   vector<string> internal;
   stringstream ss(str); // Turn the string into a stream.
   string tok;
@@ -41,7 +41,7 @@ vector<string> split(string str, char delimiter) {
 // pfd_initialize_adjacency_list
 // ------------
 
-void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors, istream& r) {
+void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<priority_queue<int>>& successors, istream& r) {
     string s;
     while (getline(r, s)) {
 
@@ -53,7 +53,7 @@ void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, v
 
         for (int i = 2; i < num_dependencies + 2; ++i) {
             int dependency = stoi(nums[i]);
-            predecessors[task].push(dependency);
+            ++(predecessors[task]);
             successors[dependency].push(task);
         }
     }
@@ -63,7 +63,7 @@ void pfd_initialize_adjacency_list (vector<priority_queue<int>>& predecessors, v
 // pfd_eval
 // ------------
 
-queue<int> pfd_eval (vector<priority_queue<int>>& predecessors, vector<priority_queue<int>>& successors) {
+queue<int> pfd_eval (vector<int>& predecessors, vector<priority_queue<int>>& successors) {
     
     queue<int> no_predecessors;
     
@@ -98,8 +98,10 @@ void pfd_solve (istream& r, ostream& w) {
     vector<string> nums = split(s, ' ');
     tasks = stoi(nums[0]);
 
-    vector<priority_queue<int>> predecessors(tasks); 
-    vector<priority_queue<int>> successors(tasks);
+    // vector<priority_queue<int>> predecessors(tasks + 1); 
+    vector<int> predecessors(tasks + 1, 0);
+    vector<priority_queue<int>> successors(tasks + 1);
+
     pfd_initialize_adjacency_list(predecessors, successors, r);
     queue<int> results = pfd_eval(predecessors, successors);
     pfd_print_result(w, results);

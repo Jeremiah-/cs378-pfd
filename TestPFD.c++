@@ -14,70 +14,75 @@
 #include <sstream>  // istringtstream, ostringstream
 #include <string>   // string
 #include <utility>  // pair
+#include <queue> //priority_queue
+#include <vector>
 
 #include "gtest/gtest.h"
 
-#include "Collatz.h"
+#include "PFD.h"
 
 using namespace std;
 
 // -----------
-// TestCollatz
+// TestPFD
 // -----------
 
+
+TEST(PFDFixture, split) {
+    string s("Split me up.");
+    vector<string> result = pfd_split(s, ' ');
+    ASSERT_THAT(result, ElementsAre("Split", "me", "up."));
+}
+
+TEST(PFDFixture, split) {
+    string s("1 2 3 4\n");
+    vector<string> result = pfd_split(s, ' ');
+    ASSERT_EQ(result, ElementsAre("1", "2", "3", "4"));
+}
+
+
 // ----
-// read
+// pfd_initialize_adjacency_list
 // ----
 
-TEST(CollatzFixture, read) {
-    string s("1 10\n");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ( 1, p.first);
-    ASSERT_EQ(10, p.second);}
+TEST(PFDFixture, initialize) {
+    istringstream r("1 2 1 2\n2 3 1 2 3");
+    vector<priority_queue<int>> pre(4);
+    vector<priority_queue<int>> suc(4);
 
-TEST(CollatzFixture, read2) {
-    string s("100 200\n");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ(100, p.first);
-    ASSERT_EQ(200, p.second);}
+    ASSERT_THAT( pre[1], ElementsAre(1, 2));
+    ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
+    ASSERT_EQ( pre[3].size(), 0;
+    ASSERT_THAT(suc[0], ElementsAre(1, 2));
+    ASSERT_THAT(suc[1], ElementsAre(1, 2, ));
+}
 
-TEST(CollatzFixture, read3) {
-    string s("900 1000\n");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ( 900, p.first);
-    ASSERT_EQ(1000, p.second);}
-
-TEST(CollatzFixture, read4) {
-    string s("100 2");
-    const pair<int, int> p = collatz_read(s);
-    ASSERT_EQ(100, p.first);
-    ASSERT_EQ(2, p.second);}
 
 // ----
 // eval
 // ----
 
-TEST(CollatzFixture, eval_1) {
+TEST(PFDFixture, eval_1) {
     const int v = collatz_eval(1, 10);
     ASSERT_EQ(20, v);}
 
-TEST(CollatzFixture, eval_2) {
+TEST(PFDFixture, eval_2) {
     const int v = collatz_eval(100, 200);
     ASSERT_EQ(125, v);}
 
-TEST(CollatzFixture, eval_3) {
+TEST(PFDFixture, eval_3) {
     const int v = collatz_eval(201, 210);
     ASSERT_EQ(89, v);}
 
-TEST(CollatzFixture, eval_4) {
+TEST(PFDFixture, eval_4) {
     const int v = collatz_eval(900, 1000);
     ASSERT_EQ(174, v);}
 
-TEST(CollatzFixture, eval_5) {
+TEST(PFDFixture, eval_5) {
     const int v = collatz_eval(1000, 900);
     ASSERT_EQ(174, v);}
 
-TEST(CollatzFixture, eval_6) {
+TEST(PFDFixture, eval_6) {
     const int v = collatz_eval(10, 10);
     ASSERT_EQ(7, v);}
 
@@ -86,7 +91,7 @@ TEST(CollatzFixture, eval_6) {
 // print
 // -----
 
-TEST(CollatzFixture, print) {
+TEST(PFDFixture, print) {
     ostringstream w;
     collatz_print(w, 1, 10, 20);
     ASSERT_EQ("1 10 20\n", w.str());}
@@ -95,13 +100,13 @@ TEST(CollatzFixture, print) {
 // solve
 // -----
 
-TEST(CollatzFixture, solve) {
+TEST(PFDFixture, solve) {
     istringstream r("1 10\n100 200\n201 210\n900 1000\n");
     ostringstream w;
     collatz_solve(r, w);
     ASSERT_EQ("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n", w.str());}
 
-TEST(CollatzFixture, solve2) {
+TEST(PFDFixture, solve2) {
     istringstream r("1 10\n100 200\n201 210\n1000 900\n");
     ostringstream w;
     collatz_solve(r, w);
