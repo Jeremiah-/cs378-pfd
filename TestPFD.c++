@@ -37,7 +37,7 @@ TEST(PFDFixture, split) {
 TEST(PFDFixture, split) {
     string s("1 2 3 4\n");
     vector<string> result = pfd_split(s, ' ');
-    ASSERT_EQ(result, ElementsAre("1", "2", "3", "4"));
+    ASSERT_THAT(result, ElementsAre("1", "2", "3", "4"));
 }
 
 
@@ -53,8 +53,9 @@ TEST(PFDFixture, initialize) {
     ASSERT_THAT( pre[1], ElementsAre(1, 2));
     ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
     ASSERT_EQ( pre[3].size(), 0;
-    ASSERT_THAT(suc[0], ElementsAre(1, 2));
-    ASSERT_THAT(suc[1], ElementsAre(1, 2, ));
+    ASSERT_THAT(suc[1], ElementsAre(1, 2));
+    ASSERT_THAT(suc[2], ElementsAre(1, 2));
+    ASSERT_THAT(suc[3], ElementsAre(2));
 }
 
 

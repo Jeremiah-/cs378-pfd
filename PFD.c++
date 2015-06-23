@@ -79,11 +79,12 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
 
 void pfd_print_result (ostream& w, queue<int>& results) {
     int size = results.size();
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size - 1; ++i) {
         w << results.front() << " ";
         results.pop();
     }
-    w << endl;
+
+    w << results.front() << endl;
 }
 
 // -------------
