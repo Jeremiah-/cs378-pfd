@@ -15,7 +15,7 @@
 #include <string>   // string
 #include <utility>  // pair
 #include <queue>
-int tasks;
+#include <vector>
 using namespace std;
 
 vector<string> pfd_split(string str, char delimiter);
