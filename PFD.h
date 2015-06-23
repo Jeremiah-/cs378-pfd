@@ -29,7 +29,7 @@ vector<string> pfd_split(string str, char delimiter);
  * @param s a string
  * @return a pair of ints, representing the beginning and end of a range, [i, j]
  */
-void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<priority_queue<int>>& successors, istream& r);
+void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int>>& successors, istream& r);
 
 // ------------
 // collatz_eval
@@ -40,7 +40,7 @@ void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<priority_q
  * @param j the end       of the range, inclusive
  * @return the max cycle length of the range [i, j]
  */
-queue<int> pfd_eval (vector<int>& predecessors, vector<priority_queue<int>>& successors);
+queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors);
 
 // -------------
 // collatz_print
