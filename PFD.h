@@ -14,7 +14,8 @@
 #include <iostream> // istream, ostream
 #include <string>   // string
 #include <utility>  // pair
-
+#include <queue>
+int tasks;
 using namespace std;
 
 // ------------
@@ -26,7 +27,7 @@ using namespace std;
  * @param s a string
  * @return a pair of ints, representing the beginning and end of a range, [i, j]
  */
-pair<int, int> collatz_read (const string& s);
+void pfd_initialize_adjacency_list (priority_queue<int> predecessors[tasks], priority_queue<int> successors[tasks], istream& r);
 
 // ------------
 // collatz_eval
@@ -37,7 +38,7 @@ pair<int, int> collatz_read (const string& s);
  * @param j the end       of the range, inclusive
  * @return the max cycle length of the range [i, j]
  */
-int collatz_eval (int i, int j);
+queue<int> pfd_eval (priority_queue<int> predecessors)[tasks], priority_queue<int> successors[tasks]);
 
 // -------------
 // collatz_print
@@ -50,7 +51,7 @@ int collatz_eval (int i, int j);
  * @param j the end       of the range, inclusive
  * @param v the max cycle length
  */
-void collatz_print (ostream& w, int i, int j, int v);
+void pfd_print_result (ostream& w, queue<int>& results);
 
 // -------------
 // collatz_solve
@@ -60,6 +61,6 @@ void collatz_print (ostream& w, int i, int j, int v);
  * @param r an istream
  * @param w an ostream
  */
-void collatz_solve (istream& r, ostream& w);
+void pfd_solve (istream& r, ostream& w);
 
 #endif // Collatz_h
