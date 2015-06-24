@@ -49,6 +49,21 @@ TEST(PFDFixture, split1) {
     ASSERT_EQ(result[3], "4");
 }
 
+TEST(PFDFixture, split2) {
+    string s("1 2 3 4 5 6 7");
+    vector<string> result = pfd_split(s, ' ');
+    // ASSERT_THAT(result, ElementsAre("1", "2", "3", "4"));
+    ASSERT_EQ(result.size(), 7);
+    ASSERT_EQ(result[0], "1");
+    ASSERT_EQ(result[1], "2");
+    ASSERT_EQ(result[2], "3");
+    ASSERT_EQ(result[3], "4");
+    ASSERT_EQ(result[4], "5");
+    ASSERT_EQ(result[5], "6");
+    ASSERT_EQ(result[6], "7");
+}
+
+
 
 // ----
 // pfd_initialize_adjacency_list
@@ -75,6 +90,53 @@ TEST(PFDFixture, initialize) {
     // ASSERT_THAT(suc[3], ElementsAre(2));
 }
 
+
+TEST(PFDFixture, initialize1) {
+    istringstream r("1 2 3 4");
+    vector<int> pre(5);
+    vector<vector<int>> suc(5);
+
+    pfd_initialize_adjacency_list(pre, suc, r);
+
+    // ASSERT_THAT( pre[1], ElementsAre(1, 2));
+    // ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
+
+    ASSERT_EQ(pre[1], 2);
+    ASSERT_EQ(pre[2], 0);
+    ASSERT_EQ(pre[3], 0);
+    ASSERT_EQ(pre[4], 0);
+    ASSERT_EQ(suc[1].size(), 0);
+    ASSERT_EQ(suc[2].size(), 0);
+    ASSERT_EQ(suc[3].size(), 1);
+    ASSERT_EQ(suc[4].size(), 1);
+    // ASSERT_THAT(suc[1], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[2], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[3], ElementsAre(2));
+}
+
+
+TEST(PFDFixture, initialize2) {
+    istringstream r("1 1 4\n2 1 3\n");
+    vector<int> pre(5);
+    vector<vector<int>> suc(5);
+
+    pfd_initialize_adjacency_list(pre, suc, r);
+
+    // ASSERT_THAT( pre[1], ElementsAre(1, 2));
+    // ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
+
+    ASSERT_EQ(pre[1], 1);
+    ASSERT_EQ(pre[2], 1);
+    ASSERT_EQ(pre[3], 0);
+    ASSERT_EQ(pre[4], 0);
+    ASSERT_EQ(suc[1].size(), 0);
+    ASSERT_EQ(suc[2].size(), 0);
+    ASSERT_EQ(suc[3].size(), 1);
+    ASSERT_EQ(suc[4].size(), 1);
+    // ASSERT_THAT(suc[1], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[2], ElementsAre(1, 2));
+    // ASSERT_THAT(suc[3], ElementsAre(2));
+}
 
 // ----
 // eval
@@ -107,6 +169,51 @@ TEST(PFDFixture, eval_1) {
     results.pop();
 }
 
+TEST(PFDFixture, eval_2) {
+    vector<vector<int>> suc(5);
+    vector<int> three = {1};
+    vector<int> four = {1};
+
+    suc[3] = three;
+    suc[4] = four;
+
+    vector<int> pre = {0, 2, 0, 0, 0};
+    queue<int> results = pfd_eval(pre, suc);
+
+    ASSERT_EQ(results.size(), 4);
+    ASSERT_EQ(results.front(), 2);
+    results.pop();
+    ASSERT_EQ(results.front(), 3);
+    results.pop();
+    ASSERT_EQ(results.front(), 4);
+    results.pop();
+    ASSERT_EQ(results.front(), 1);
+    results.pop();
+}
+
+TEST(PFDFixture, eval_3) {
+    vector<vector<int>> suc(5);
+    vector<int> three = {2};
+    vector<int> four = {1};
+
+    suc[3] = three;
+    suc[4] = four;
+
+    vector<int> pre = {0, 1, 1, 0, 0, 0};
+    queue<int> results = pfd_eval(pre, suc);
+
+    // ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
+    ASSERT_EQ(results.size(), 4);
+    ASSERT_EQ(results.front(), 3);
+    results.pop();
+    ASSERT_EQ(results.front(), 2);
+    results.pop();
+    ASSERT_EQ(results.front(), 4);
+    results.pop();
+    ASSERT_EQ(results.front(), 1);
+    results.pop();
+}
+
 
 // -----
 // print
@@ -123,6 +230,13 @@ TEST(PFDFixture, print) {
     pfd_print_result(w, results);
     ASSERT_EQ("1 2 3 4 5", w.str());}
 
+TEST(PFDFixture, print1) {
+    ostringstream w;
+    queue<int> results;
+    results.push(1);
+    pfd_print_result(w, results);
+    ASSERT_EQ("1", w.str());}
+
 // -----
 // solve
 // -----
@@ -133,6 +247,23 @@ TEST(PFDFixture, solve) {
     pfd_solve(r, w);
     ASSERT_EQ("1 5 3 2 4", w.str());}
 
+TEST(PFDFixture, solve1) {
+    istringstream r("4 1\n1 2 3 4\n");
+    ostringstream w;
+    pfd_solve(r, w);
+    ASSERT_EQ("2 3 4 1", w.str());}
+
+TEST(PFDFixture, solve2) {
+    istringstream r("4 2\n1 1 4\n2 1 3\n");
+    ostringstream w;
+    pfd_solve(r, w);
+    ASSERT_EQ("3 2 4 1", w.str());}
+
+TEST(PFDFixture, solve3) {
+    istringstream r("10 1\n1 9 2 3 4 5 6 7 8 9 10\n");
+    ostringstream w;
+    pfd_solve(r, w);
+    ASSERT_EQ("2 3 4 5 6 7 8 9 10 1", w.str());}
 
 /*
 % ls -al /usr/include/gtest/
