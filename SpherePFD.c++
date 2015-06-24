@@ -63,7 +63,7 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
 
     // do a pass to get the initial no-predecessors
     for (int i = 1; i < predecessors.size(); ++i) {
-        if (predecessors.at(i) == 0) {
+        if (predecessors[i] == 0) {
             no_predecessors.push(i);
         }
     }
@@ -74,7 +74,7 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
         results.push(task);
 
         for (int i : (successors[task])) {
-            if (--predecessors.at(i) == 0) {
+            if (--predecessors[i] == 0) {
                 no_predecessors.push(i);
             }
         }
@@ -88,7 +88,6 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
 // pfd_print
 // -------------
 
-// TODO: may be a problem with printing an extra space at the end
 
 void pfd_print_result (ostream& w, queue<int>& results) {
     int size = results.size();
