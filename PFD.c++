@@ -83,7 +83,7 @@ void pfd_print_result (ostream& w, queue<int>& results) {
         results.pop();
     }
 
-    w << results.front() << endl;
+    w << results.front();
 }
 
 // -------------

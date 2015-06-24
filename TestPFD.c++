@@ -39,7 +39,7 @@ TEST(PFDFixture, split) {
 }
 
 TEST(PFDFixture, split1) {
-    string s("1 2 3 4\n");
+    string s("1 2 3 4");
     vector<string> result = pfd_split(s, ' ');
     // ASSERT_THAT(result, ElementsAre("1", "2", "3", "4"));
     ASSERT_EQ(result.size(), 4);
@@ -56,14 +56,17 @@ TEST(PFDFixture, split1) {
 
 TEST(PFDFixture, initialize) {
     istringstream r("1 2 1 2\n2 3 1 2 3");
-    vector<priority_queue<int>> pre(4);
-    vector<priority_queue<int>> suc(4);
+    vector<int> pre(4);
+    vector<vector<int>> suc(4);
+
+    pfd_initialize_adjacency_list(pre, suc, r);
 
     // ASSERT_THAT( pre[1], ElementsAre(1, 2));
     // ASSERT_THAT( pre[2], ElementsAre(1, 2, 3));
-    ASSERT_EQ(pre[1].size(), 2);
-    ASSERT_EQ(pre[2].size(), 3);
-    ASSERT_EQ( pre[3].size(), 0);
+
+    ASSERT_EQ(pre[1], 2);
+    ASSERT_EQ(pre[2], 3);
+    ASSERT_EQ( pre[3], 0);
     ASSERT_EQ( suc[1].size(), 2);
     ASSERT_EQ( suc[2].size(), 2);
     ASSERT_EQ( suc[3].size(), 1);
@@ -92,15 +95,15 @@ TEST(PFDFixture, eval_1) {
 
     // ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
     ASSERT_EQ(results.size(), 5);
-    ASSERT_EQ(results.front(), "1");
+    ASSERT_EQ(results.front(), 1);
     results.pop();
-    ASSERT_EQ(results.front(), "5");
+    ASSERT_EQ(results.front(), 5);
     results.pop();
-    ASSERT_EQ(results.front(), "3");
+    ASSERT_EQ(results.front(), 3);
     results.pop();
-    ASSERT_EQ(results.front(), "2");
+    ASSERT_EQ(results.front(), 2);
     results.pop();
-    ASSERT_EQ(results.front(), "4");
+    ASSERT_EQ(results.front(), 4);
     results.pop();
 }
 
