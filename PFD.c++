@@ -85,7 +85,7 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
 
         for (int i : (successors[task])) {
             if (--predecessors[i] == 0) {
-                count << i << endl;
+                cout << i << endl;
                 no_predecessors.push(i);
             }
         }
