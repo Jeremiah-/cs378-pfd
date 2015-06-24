@@ -123,6 +123,6 @@ void pfd_solve (istream& r, ostream& w) {
 }
 
 int main () {
-    using namespace std;
+    // using namespace std;
     pfd_solve(cin, cout);
     return 0;}
