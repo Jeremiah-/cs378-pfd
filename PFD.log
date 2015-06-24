@@ -1,0 +1,113 @@
+commit c2043625712e0e5b5d8e1f42942d3b732a965b5a
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 23:48:56 2015 -0500
+
+    sphere doesn't work
+
+commit 0fe2279a0d582beccbebfd4a0f237da48df2ef53
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 23:26:14 2015 -0500
+
+    debugging
+
+commit 953e1a57c001348fa3040c8355daba376403f0d5
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 23:11:39 2015 -0500
+
+    Trying out some tests
+
+commit 4cb5be1764555490c421c2b746cdb6275dab3c20
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 22:41:25 2015 -0500
+
+    general debugging
+
+commit 129680114e6881c342e32bf53b96b528cd6892cf
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 22:24:52 2015 -0500
+
+    Adding the sphere file. Don't know if it works yet.
+
+commit 26401485ee9be9773b137545c73af7010d93b2a4
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 22:20:06 2015 -0500
+
+    closes #6. It works!
+
+commit aadb3d66bab1b38a50f83c15db44cc51daa74250
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 20:01:07 2015 -0500
+
+    closes #5. Made enough tests.
+
+commit 92c7e8171c3ca74b14d1f3dad991442dd491bd0a
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 19:26:26 2015 -0500
+
+    closes #16. Fixed the test cases. Need to add more now
+
+commit a1e1f11d17041d8a945921c772f7044851f6a36d
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 18:59:30 2015 -0500
+
+    Fixed minor bugs. Trying to fix TestPFD.c++
+
+commit 8f4c4c7b381708af5095c6d1a95d2c3f7c666ae1
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 18:08:22 2015 -0500
+
+    tried adding a few tests. Time to see if everything compiles (the lab has been down)
+
+commit a5643d72ce20092b7780b0d9515b7b2e9fd9425d
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 17:36:07 2015 -0500
+
+    Fixed the print function. closes #17
+
+commit 3d75c6d13cc7e0a9169024890794238e6b4fb1e4
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 17:07:15 2015 -0500
+
+    Forgot to #<vector> in PFD.h
+
+commit e73e310324af933b85d0d6707a14ef002b8150ae
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Tue Jun 23 17:03:32 2015 -0500
+
+    closes #22. No need for the comparison time that a priority queue does.
+
+commit f5f3c246f6694ea149ac6bb0dc6c65a5aa66d66a
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 15:13:55 2015 -0500
+
+    closes #21. Also am trying to fix up other files, nothing worth noting. Just general test making and debugging.
+
+commit e79f806ba358887d7827b4f9ac63948ad72481a1
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 12:43:28 2015 -0500
+
+    closes #20. Found a method to split strings online.
+
+commit 06333471e475ae7ebb9e656ede286fe006ec95bf
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 12:19:55 2015 -0500
+
+    closes # 19. Using vectors instead of arrays. closes #18. Made the list for successors.
+
+commit f54c8c1e2200971693ea313eff4beeafbcdb644e
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Mon Jun 22 23:16:08 2015 -0500
+
+    Tried adding the base functions. Does not work. Need to try replacing arguments arrays with vectors.
+
+commit 12022a4a090e702702f816f188892475f635de38
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Mon Jun 22 16:47:44 2015 -0500
+
+    Adding the base files and making the dev-branch. These files do not work.
+
+commit d71bd133ae31b6bc9a98e74822431671a901ac93
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Sat Jun 20 13:24:04 2015 -0500
+
+    Initial commit
