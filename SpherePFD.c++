@@ -57,10 +57,9 @@ void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int
 queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors) {
     priority_queue<int, vector<int>, greater<int>> no_predecessors;
     queue<int> results;
-    assert(results.size() == 0);
-    assert(predecessors.size() != 0);
-    // cout << predecessors.size() << endl;
-    assert (no_predecessors.size() == 0);
+    // assert(results.size() == 0);
+    // assert(predecessors.size() != 0);
+    // assert (no_predecessors.size() == 0);
 
     // do a pass to get the initial no-predecessors
     for (int i = 1; i < predecessors.size(); ++i) {
