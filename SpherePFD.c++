@@ -99,7 +99,7 @@ void pfd_print_result (ostream& w, queue<int>& results) {
         results.pop();
     }
 
-    w << results.front();
+    w << results.front() << endl;
 }
 
 // -------------
