@@ -73,6 +73,9 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
         no_predecessors.pop();
         results.push(task);
 
+        // vector<int> x = successors[task];
+        // for (int i = 0; i < x.size(); ++i) {
+        //     int r = x[i];
         for (int i : (successors[task])) {
             if (--predecessors[i] == 0) {
                 no_predecessors.push(i);
@@ -112,8 +115,8 @@ void pfd_solve (istream& r, ostream& w) {
     int tasks = stoi(nums[0]);
 
     // vector<priority_queue<int>> predecessors(tasks + 1); 
-    vector<int> predecessors(tasks + 1, 0);
-    vector<vector<int>> successors(tasks + 1);
+    vector<int> predecessors(tasks + 2, 0);
+    vector<vector<int>> successors(tasks + 2);
 
     pfd_initialize_adjacency_list(predecessors, successors, r);
     queue<int> results = pfd_eval(predecessors, successors);
