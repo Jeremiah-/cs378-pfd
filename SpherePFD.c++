@@ -1,15 +1,3 @@
-// ----------------------------
-// projects/collatz/Collatz.c++
-// Copyright (C) 2015
-// Glenn P. Downing
-// ----------------------------
-
-// THIS IS A MODIFICATION OF DOWNING'S Collatz.c++
-
-// --------
-// includes
-// --------
-
 #include <cassert>  // assert
 #include <iostream> // endl, istream, ostream
 #include <sstream>  // istringstream
@@ -18,7 +6,10 @@
 #include <queue> //priority_queue
 #include <vector>
 
-#include "PFD.h"
+// #include "PFD.h"
+#ifdef ONLINE_JUDGE
+    #define NDEBUG
+#endif
 
 using namespace std;
 
@@ -130,3 +121,8 @@ void pfd_solve (istream& r, ostream& w) {
     queue<int> results = pfd_eval(predecessors, successors);
     pfd_print_result(w, results);
 }
+
+int main () {
+    using namespace std;
+    pfd_solve(cin, cout);
+    return 0;}
