@@ -144,15 +144,15 @@ TEST(PFDFixture, initialize2) {
 
 TEST(PFDFixture, eval_1) {
     vector<vector<int>> suc(6);
-    vector<int> one = {3, 5};
-    vector<int> three = {2, 4};
-    vector<int> five = {3, 2};
+    vector<int> one {3, 5};
+    vector<int> three {2, 4};
+    vector<int> five {3, 2};
 
     suc[1] = one;
     suc[3] = three;
     suc[5] = five;
 
-    vector<int> pre = {0, 0, 2, 2, 1, 1};
+    vector<int> pre {0, 0, 2, 2, 1, 1};
     queue<int> results = pfd_eval(pre, suc);
 
     // ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
@@ -171,13 +171,13 @@ TEST(PFDFixture, eval_1) {
 
 TEST(PFDFixture, eval_2) {
     vector<vector<int>> suc(5);
-    vector<int> three = {1};
-    vector<int> four = {1};
+    vector<int> three {1};
+    vector<int> four {1};
 
     suc[3] = three;
     suc[4] = four;
 
-    vector<int> pre = {0, 2, 0, 0, 0};
+    vector<int> pre {0, 2, 0, 0, 0};
     queue<int> results = pfd_eval(pre, suc);
 
     ASSERT_EQ(results.size(), 4);
@@ -193,13 +193,13 @@ TEST(PFDFixture, eval_2) {
 
 TEST(PFDFixture, eval_3) {
     vector<vector<int>> suc(5);
-    vector<int> three = {2};
-    vector<int> four = {1};
+    vector<int> three {2};
+    vector<int> four {1};
 
     suc[3] = three;
     suc[4] = four;
 
-    vector<int> pre = {0, 1, 1, 0, 0, 0};
+    vector<int> pre {0, 1, 1, 0, 0};
     queue<int> results = pfd_eval(pre, suc);
 
     // ASSERT_THAT(results, ElementsAre(1, 5, 3, 2, 4));}
