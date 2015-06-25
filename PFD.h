@@ -18,8 +18,6 @@
 #include <vector>
 using namespace std;
 
-vector<string> pfd_split(string str, char delimiter);
-
 // ------------
 // collatz_read
 // ------------
@@ -29,7 +27,7 @@ vector<string> pfd_split(string str, char delimiter);
  * @param s a string
  * @return a pair of ints, representing the beginning and end of a range, [i, j]
  */
-void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int>>& successors, istream& r);
+void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int>>& successors, istream& r, int numLines);
 
 // ------------
 // collatz_eval

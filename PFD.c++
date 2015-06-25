@@ -23,42 +23,31 @@
 using namespace std;
 
 
-// This method is taken from http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
-// since I couldn't find a simple library function to split a string
-vector<string> pfd_split(string str, char delimiter) {
-  vector<string> internal;
-  stringstream ss(str); // Turn the string into a stream.
-  string tok;
-  
-  while(getline(ss, tok, delimiter)) {
-    internal.push_back(tok);
-  }
-  
-  return internal;
-}
-
 // ------------
 // pfd_initialize_adjacency_list
 // ------------
 
-void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int>>& successors, istream& r) {
-    string s;
-    while (getline(r, s)) {
+void pfd_initialize_adjacency_list (vector<int>& predecessors, vector<vector<int>>& successors, istream& r, int numLines) {
 
-        vector<string> nums = pfd_split(s, ' ');
-        int task = stoi(nums[0]);
-        int num_dependencies = stoi(nums[1]);
-        // priority_queue<int> p;
-        // priority_queue<int> s;
+    int task;
+    int num_dependencies;
 
+    for(int j = 0; j < numLines; ++j) {
+        r >> task;
+        r >> num_dependencies;
         for (int i = 2; i < num_dependencies + 2; ++i) {
-            int dependency = stoi(nums[i]);
+            int dependency;
+            r >> dependency;
+
+            // increment how many predecessors this task has
             ++(predecessors[task]);
+
+            // keep track of what successors a task has
             successors[dependency].push_back(task);
         }
     }
 }
-
+ 
 // ------------
 // pfd_eval
 // ------------
@@ -68,7 +57,6 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
     queue<int> results;
     assert(results.size() == 0);
     assert(predecessors.size() != 0);
-    // cout << predecessors.size() << endl;
     assert (no_predecessors.size() == 0);
 
     // do a pass to get the initial no-predecessors
@@ -78,15 +66,20 @@ queue<int> pfd_eval (vector<int>& predecessors, vector<vector<int>>& successors)
         }
     }
     
+    // this is the main work
+    // push a task into the priority_queue when it does not have a predecessor
     while (!no_predecessors.empty()) {
         int task = no_predecessors.top();
         no_predecessors.pop();
+
+        // this task does not have a predecessor, so he's ready to be executed
         results.push(task);
 
+        // go through the successors of this task that was pushed
         for (int i : (successors[task])) {
-            // cout <<"task " << predecessors[i] << endl;
+
+            // if there are no predecessors, push it into the p_queue
             if (--predecessors[i] == 0) {
-                // cout << "in if " << predecessors[i] << endl;
                 no_predecessors.push(i);
             }
         }
@@ -115,18 +108,18 @@ void pfd_print_result (ostream& w, queue<int>& results) {
 // -------------
 
 void pfd_solve (istream& r, ostream& w) {
-    // make an adjacency list of successors
-    // make the list of predeccessors for now
-    string s;
-    getline(r, s);
-    vector<string> nums = pfd_split(s, ' ');
-    int tasks = stoi(nums[0]);
+    int tasks;
+    int rules;
+    r >> tasks;
+    r >> rules;
 
-    // vector<priority_queue<int>> predecessors(tasks + 1); 
+    // to keep track of how many predecessors a task has
     vector<int> predecessors(tasks + 1, 0);
+
+    // to keep track of what succeeds a task
     vector<vector<int>> successors(tasks + 1);
 
-    pfd_initialize_adjacency_list(predecessors, successors, r);
+    pfd_initialize_adjacency_list(predecessors, successors, r, rules);
     queue<int> results = pfd_eval(predecessors, successors);
     pfd_print_result(w, results);
 }
