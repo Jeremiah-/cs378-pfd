@@ -1,3 +1,33 @@
+commit a8eaedd0ca7584c2fd9339b3e082e9d1653b613f
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Wed Jun 24 20:12:03 2015 -0500
+
+    closes #7. closes #8. closes #9. closes #12. closes #19. Done now.
+
+commit 043389c8b418715fb7e4e53bed057a5ffa6b9a84
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Wed Jun 24 16:14:56 2015 -0500
+
+    More debugging
+
+commit 7997c5aa1886445c346d152b013c78b5828bea79
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Wed Jun 24 15:29:56 2015 -0500
+
+    debugging
+
+commit 386dedbf04be442893d3436346f2ae316be95d1a
+Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
+Date:   Wed Jun 24 15:24:18 2015 -0500
+
+    trying to  debug
+
+commit 6f042fbf90226ba48f205c7fd3c9fe1443513c15
+Author: Jeremiah Martinez <jeremiah@cs.utexas.edu>
+Date:   Tue Jun 23 23:50:56 2015 -0500
+
+    adding stuff
+
 commit c2043625712e0e5b5d8e1f42942d3b732a965b5a
 Author: Jeremiah- <Jeremiah.H.Martinez@utexas.edu>
 Date:   Tue Jun 23 23:48:56 2015 -0500
